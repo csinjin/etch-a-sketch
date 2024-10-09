@@ -1,6 +1,9 @@
+#gridSizeButton {
+    margin: 10px 0px;
+}
+
 #gridContainer {
     display: flex;
     flex-direction: column;
-    width: 960px;
-    height: 960px;
+    border: 2px solid black;
 }

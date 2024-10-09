@@ -1,10 +1,11 @@
 const gridContainer = document.querySelector('#gridContainer');
 const gridSizeButton = document.querySelector('#gridSizeButton');
+const gridWidth = 900;
+const gridHeight = 900;
 
 const calculateSquareSize = (numRows, numColumns) => {
-    const gridSize = 960; //960px x 960px
-    let squareWidth = 960 / numColumns;
-    let squareHeight = 960 / numRows;
+    let squareWidth = gridWidth / numColumns;
+    let squareHeight = gridHeight / numRows;
 
     return [squareWidth.toString() + 'px', squareHeight.toString() + 'px'];
 }
@@ -27,6 +28,7 @@ const generateGrid = (numRows, numColumns) => {
         rowDiv.style = 'display: flex; background: white;';
         gridContainer.appendChild(rowDiv);
     }
+    gridContainer.style = 'width: ' + gridWidth + 'px' + '; height: ' + gridHeight + 'px';
 };
 
 const removeGrid = () => {
