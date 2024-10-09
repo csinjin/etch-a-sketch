@@ -3,8 +3,8 @@ const gridSizeButton = document.querySelector('#gridSizeButton');
 
 const calculateSquareSize = (numRows, numColumns) => {
     const gridSize = 960; //960px x 960px
-    let squareWidth = 960 / numRows;
-    let squareHeight = 960 / numColumns;
+    let squareWidth = 960 / numColumns;
+    let squareHeight = 960 / numRows;
 
     return [squareWidth.toString() + 'px', squareHeight.toString() + 'px'];
 }
