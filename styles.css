@@ -1,4 +1,6 @@
 #gridContainer {
     display: flex;
     flex-direction: column;
+    width: 960px;
+    height: 960px;
 }

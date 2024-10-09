@@ -1,16 +1,27 @@
 const gridContainer = document.querySelector('#gridContainer');
 const gridSizeButton = document.querySelector('#gridSizeButton');
 
+const calculateSquareSize = (numRows, numColumns) => {
+    const gridSize = 960; //960px x 960px
+    let squareWidth = 960 / numRows;
+    let squareHeight = 960 / numColumns;
+
+    return [squareWidth.toString() + 'px', squareHeight.toString() + 'px'];
+}
 
 const generateGrid = (numRows, numColumns) => {
+    let squareDimensions = calculateSquareSize(numRows, numColumns);
+    let squareWidth = squareDimensions[0];
+    let squareHeight = squareDimensions[1];
+
     for (let row = 1; row <= numRows; row++){
         let rowDiv = document.createElement('div');
         rowDiv.setAttribute('class', 'row');
         for (let column = 1; column <= numColumns; column++){
             let columnDiv = document.createElement('div');
             columnDiv.setAttribute('class', 'square');
-            columnDiv.style.width = '10px';
-            columnDiv.style.height = '10px';
+            columnDiv.style.width = squareWidth;
+            columnDiv.style.height = squareHeight;
             rowDiv.appendChild(columnDiv);
         }
         rowDiv.style = 'display: flex; background: white;';
