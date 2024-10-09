@@ -13,3 +13,8 @@ for (let row = 1; row <= 16; row++){
     rowDiv.style = 'display: flex; background: white; width: 800px';
     gridContainer.appendChild(rowDiv);
 }
+
+gridContainer.addEventListener('mouseover', (event) => {
+    let target = event.target;
+    target.style.background = "black";
+})

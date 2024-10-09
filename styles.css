@@ -1,4 +1,9 @@
+body {
+    display: flex;
+}
+
 #gridContainer {
     display: flex;
     flex-direction: column;
+    width: auto;
 }
