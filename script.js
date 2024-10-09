@@ -1,20 +1,47 @@
 const gridContainer = document.querySelector('#gridContainer');
+const gridSizeButton = document.querySelector('#gridSizeButton');
 
-for (let row = 1; row <= 16; row++){
-    let rowDiv = document.createElement('div');
-    rowDiv.setAttribute('id', ('row' + row));
-    for (let column = 1; column <= 16; column++){
-        let columnDiv = document.createElement('div');
-        columnDiv.setAttribute('id', ('row' + row + 'column' + column));
-        columnDiv.style.width = '50px';
-        columnDiv.style.height = '50px';
-        rowDiv.appendChild(columnDiv);
+
+const generateGrid = (numRows, numColumns) => {
+    for (let row = 1; row <= numRows; row++){
+        let rowDiv = document.createElement('div');
+        rowDiv.setAttribute('class', 'row');
+        for (let column = 1; column <= numColumns; column++){
+            let columnDiv = document.createElement('div');
+            columnDiv.setAttribute('class', 'square');
+            columnDiv.style.width = '10px';
+            columnDiv.style.height = '10px';
+            rowDiv.appendChild(columnDiv);
+        }
+        rowDiv.style = 'display: flex; background: white;';
+        gridContainer.appendChild(rowDiv);
     }
-    rowDiv.style = 'display: flex; background: white; width: 800px';
-    gridContainer.appendChild(rowDiv);
-}
+};
 
-gridContainer.addEventListener('mouseover', (event) => {
+const removeGrid = () => {
+    while (gridContainer.lastElementChild){
+        gridContainer.removeChild(gridContainer.lastElementChild);
+    }
+};
+
+gridContainer.addEventListener('mouseover', (event) => { // When hovering over a square in the grid
     let target = event.target;
-    target.style.background = "black";
+    if (target.className === 'square') (target.style.background = 'black');
+    
 })
+
+gridSizeButton.addEventListener('click', () => {
+    let numRows = prompt('How many rows? (max 100)');
+    let numColumns = prompt('How many columns? (max 100');
+
+    if (numRows > 100) (numRows = 100);
+    if (numColumns > 100) (numColumns = 100);
+    removeGrid();
+    generateGrid(numRows, numColumns);
+});
+
+const start = () => {
+    generateGrid(16, 16);
+};
+
+start();
