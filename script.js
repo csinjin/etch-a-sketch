@@ -1,34 +1,30 @@
 const gridContainer = document.querySelector('#gridContainer');
 const gridSizeButton = document.querySelector('#gridSizeButton');
-const gridWidth = 900;
-const gridHeight = 900;
+const gridSize = 500;
 
-const calculateSquareSize = (numRows, numColumns) => {
-    let squareWidth = gridWidth / numColumns;
-    let squareHeight = gridHeight / numRows;
+const calculateSquareSize = (numSquares) => {
+    let squareSize = gridSize / numSquares;
 
-    return [squareWidth.toString() + 'px', squareHeight.toString() + 'px'];
+    return (squareSize.toString() + 'px');
 }
 
-const generateGrid = (numRows, numColumns) => {
-    let squareDimensions = calculateSquareSize(numRows, numColumns);
-    let squareWidth = squareDimensions[0];
-    let squareHeight = squareDimensions[1];
+const generateGrid = (numSquares) => {
+    let squareSize = calculateSquareSize(numSquares);
 
-    for (let row = 1; row <= numRows; row++){
+    for (let row = 1; row <= numSquares; row++){
         let rowDiv = document.createElement('div');
         rowDiv.setAttribute('class', 'row');
-        for (let column = 1; column <= numColumns; column++){
+        for (let column = 1; column <= numSquares; column++){
             let columnDiv = document.createElement('div');
             columnDiv.setAttribute('class', 'square');
-            columnDiv.style.width = squareWidth;
-            columnDiv.style.height = squareHeight;
+            columnDiv.style.width = squareSize;
+            columnDiv.style.height = squareSize;
             rowDiv.appendChild(columnDiv);
         }
         rowDiv.style = 'display: flex; background: white;';
         gridContainer.appendChild(rowDiv);
     }
-    gridContainer.style = 'width: ' + gridWidth + 'px' + '; height: ' + gridHeight + 'px';
+    gridContainer.style = 'width: ' + gridSize + 'px' + '; height: ' + gridSize + 'px';
 };
 
 const removeGrid = () => {
@@ -44,17 +40,15 @@ gridContainer.addEventListener('mouseover', (event) => { // When hovering over a
 })
 
 gridSizeButton.addEventListener('click', () => {
-    let numRows = prompt('How many rows? (max 100)');
-    let numColumns = prompt('How many columns? (max 100');
+    let numSquares = prompt('Choose a grid size (1-100)');
 
-    if (numRows > 100) (numRows = 100);
-    if (numColumns > 100) (numColumns = 100);
+    if (numSquares > 100) (numSquares = 100);
     removeGrid();
-    generateGrid(numRows, numColumns);
+    generateGrid(numSquares);
 });
 
 const start = () => {
-    generateGrid(16, 16);
+    generateGrid(16);
 };
 
 start();
