@@ -1,6 +1,6 @@
 const gridContainer = document.querySelector('#gridContainer');
 const gridSizeButton = document.querySelector('#gridSizeButton');
-const gridSize = 500;
+const gridSize = 900; // Size of grid in px (width and height)
 
 const calculateSquareSize = (numSquares) => {
     let squareSize = gridSize / numSquares;
@@ -35,8 +35,9 @@ const removeGrid = () => {
 
 gridContainer.addEventListener('mouseover', (event) => { // When hovering over a square in the grid
     let target = event.target;
-    if (target.className === 'square') (target.style.background = 'black');
-    
+    let randomColour = Math.floor(Math.random()*16777215).toString(16);
+
+    if (target.className === 'square') (target.style.background = '#' + randomColour);
 })
 
 gridSizeButton.addEventListener('click', () => {
