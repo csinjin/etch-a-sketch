@@ -1,6 +1,9 @@
 const gridContainer = document.querySelector('#gridContainer');
 const gridSizeButton = document.querySelector('#gridSizeButton');
+const colourModeButton = document.querySelector('#colourModeButton');
+const colourModeLabel = document.querySelector('#colourModeLabel');
 const gridSize = 900; // Size of grid in px (width and height)
+let colourMode = 0; // 0 for random RGB colours, 1 for black with progressive opacity
 
 const calculateSquareSize = (numSquares) => {
     let squareSize = gridSize / numSquares;
@@ -19,6 +22,7 @@ const generateGrid = (numSquares) => {
             columnDiv.setAttribute('class', 'square');
             columnDiv.style.width = squareSize;
             columnDiv.style.height = squareSize;
+            columnDiv.style.opacity = 0;
             rowDiv.appendChild(columnDiv);
         }
         rowDiv.style = 'display: flex; background: white;';
@@ -37,7 +41,15 @@ gridContainer.addEventListener('mouseover', (event) => { // When hovering over a
     let target = event.target;
     let randomColour = Math.floor(Math.random()*16777215).toString(16);
 
-    if (target.className === 'square') (target.style.background = '#' + randomColour);
+    if (target.className === 'square'){
+        if (target.style.opacity < 1) (target.style.opacity = parseFloat(target.style.opacity) + 0.1);
+        if (colourMode == 0){
+            target.style.background = '#' + randomColour;
+        }
+        else {
+            target.style.background = 'black';
+        }
+    }
 })
 
 gridSizeButton.addEventListener('click', () => {
@@ -48,8 +60,15 @@ gridSizeButton.addEventListener('click', () => {
     generateGrid(numSquares);
 });
 
-const start = () => {
-    generateGrid(16);
-};
+colourModeButton.addEventListener('click', () => {
+    if (colourMode == 0) {
+        colourMode = 1;
+        colourModeLabel.innerText = 'Colour Mode: Black';
+    }
+    else {
+        colourMode = 0;
+        colourModeLabel.innerText = 'Colour Mode: RGB'
+    }
+})
 
-start();
+generateGrid(16); // Start with a 16x16 grid
