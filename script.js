@@ -2,7 +2,7 @@ const gridContainer = document.querySelector('#gridContainer');
 const gridSizeButton = document.querySelector('#gridSizeButton');
 const colourModeButton = document.querySelector('#colourModeButton');
 const colourModeLabel = document.querySelector('#colourModeLabel');
-const gridSize = 900; // Size of grid in px (width and height)
+const gridSize = 800; // Size of grid in px (width and height)
 let colourMode = 0; // 0 for random RGB colours, 1 for black with progressive opacity
 
 const calculateSquareSize = (numSquares) => {
